@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,14 +18,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nbDicesLbl: TextView
     private lateinit var dicesTxtV: Array<TextView>
     private lateinit var diceImgV: Array<ImageView>
-
+    private lateinit var recyclerView: RecyclerView
+    private var isDiceStyleImg = true
+    private var dicesViewVals:Array<Int> = Array(4, init = {
+        0
+    })
+    private var results:MutableList<Result> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener { rollDice() }
-
+        recyclerView = findViewById<RecyclerView>(R.id.ResultsView)
+        recyclerView.adapter = ResultAdapter(this, results)
         //roll the dice onLoad
         rollDice()
     }
@@ -45,15 +52,15 @@ class MainActivity : AppCompatActivity() {
 
         diceImgV = Array(4, init = {
             if (it == 0) {
-                findViewById<ImageView>(R.id.diceImg1)
+                findViewById<ImageView>(R.id.Img1)
             } else if (it == 1) {
-                findViewById<ImageView>(R.id.diceImg2)
+                findViewById<ImageView>(R.id.Img2)
             } else if (it == 2) {
-                findViewById<ImageView>(R.id.diceImg3)
+                findViewById<ImageView>(R.id.Img3)
             } else if (it == 3) {
-                findViewById<ImageView>(R.id.diceImg4)
+                findViewById<ImageView>(R.id.Img4)
             } else {
-                findViewById<ImageView>(R.id.diceImg1)
+                findViewById<ImageView>(R.id.Img1)
             }
         })
     }*/
@@ -114,10 +121,10 @@ class MainActivity : AppCompatActivity() {
         val dice4 =Dice(6)
         val diceRoll4 = dice.roll()
 
-        val diceImage: ImageView = findViewById(R.id.diceImg1)
-        val diceImage2: ImageView = findViewById(R.id.diceImg2)
-        val diceImage3: ImageView = findViewById(R.id.diceImg3)
-        val diceImage4: ImageView = findViewById(R.id.diceImg4)
+        val diceImage: ImageView = findViewById(R.id.Img1)
+        val diceImage2: ImageView = findViewById(R.id.Img3)
+        val diceImage3: ImageView = findViewById(R.id.Img2)
+        val diceImage4: ImageView = findViewById(R.id.Img4)
 
         // Determine which drawable resource ID to use based on the dice roll
         val drawableResource = when (diceRoll) {

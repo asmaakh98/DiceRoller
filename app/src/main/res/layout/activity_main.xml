@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/lblNbDices"
+        android:id="@+id/nbDicesLbl"
         android:layout_width="136dp"
         android:layout_height="35dp"
         android:layout_marginStart="4dp"
@@ -37,7 +37,7 @@
         android:text="@string/textView"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/lblNbDices"
+        app:layout_constraintStart_toEndOf="@+id/nbDicesLbl"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -54,8 +54,8 @@
         android:id="@+id/ConstraintLayout"
         android:layout_width="398dp"
         android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="340dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="404dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
@@ -85,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
-            android:id="@+id/diceImg1"
+            android:id="@+id/Img1"
             android:layout_width="96dp"
             android:layout_height="82dp"
             android:layout_marginStart="4dp"
@@ -95,7 +95,7 @@
             app:srcCompat="@drawable/dice" />
 
         <ImageView
-            android:id="@+id/diceImg2"
+            android:id="@+id/Img3"
             android:layout_width="93dp"
             android:layout_height="81dp"
             android:layout_marginTop="4dp"
@@ -105,17 +105,17 @@
             app:srcCompat="@drawable/dice" />
 
         <ImageView
-            android:id="@+id/diceImg3"
-            android:layout_width="95dp"
+            android:id="@+id/Img2"
+            android:layout_width="99dp"
             android:layout_height="83dp"
             android:layout_marginStart="100dp"
-            android:layout_marginBottom="112dp"
+            android:layout_marginBottom="120dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/dice" />
 
         <ImageView
-            android:id="@+id/diceImg4"
+            android:id="@+id/Img4"
             android:layout_width="96dp"
             android:layout_height="88dp"
             android:layout_marginEnd="8dp"

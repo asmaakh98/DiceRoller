@@ -4,30 +4,30 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/res1"
+        android:id="@+id/result1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView1" />
 
     <TextView
-        android:id="@+id/res2"
+        android:id="@+id/result2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView2" />
 
     <TextView
-        android:id="@+id/res3"
+        android:id="@+id/result3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView3" />
 
     <TextView
-        android:id="@+id/res4"
+        android:id="@+id/result4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView4" />
 </LinearLayout>
