@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/nbDicesLbl"
+        android:id="@+id/lblnbDices"
         android:layout_width="136dp"
         android:layout_height="35dp"
         android:layout_marginStart="4dp"
@@ -37,7 +37,7 @@
         android:text="@string/textView"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/nbDicesLbl"
+        app:layout_constraintStart_toEndOf="@+id/lblnbDices"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -123,6 +123,46 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/dice" />
+
+        <TextView
+            android:id="@+id/diceTv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="69dp"
+            android:text="-"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Img1" />
+
+        <TextView
+            android:id="@+id/diceTv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="80dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/diceTv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="76dp"
+            android:text="-"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/diceTv1"
+            android:layout_width="4dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="24dp"
+            android:text="-"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

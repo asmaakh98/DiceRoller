@@ -20,33 +20,33 @@ class MainActivity : AppCompatActivity() {
     private lateinit var diceImgV: Array<ImageView>
     private lateinit var recyclerView: RecyclerView
     private var isDiceStyleImg = true
-    private var dicesViewVals:Array<Int> = Array(4, init = {
+    private var dicesViewVals: Array<Int> = Array(4, init = {
         0
     })
-    private var results:MutableList<Result> = mutableListOf()
+    private var results: MutableList<Result> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val rollButton: Button = findViewById(R.id.button)
-        rollButton.setOnClickListener { rollDice() }
+        //val rollButton: Button = findViewById(R.id.button)
+        //rollButton.setOnClickListener { rollDice() }
         recyclerView = findViewById<RecyclerView>(R.id.ResultsView)
-        recyclerView.adapter = ResultAdapter(this, results)
+        recyclerView.adapter = ResultAdapter(this)
         //roll the dice onLoad
-        rollDice()
-    }
-        /*nbDicesLbl = findViewById(R.id.lblNbDices)
+        //rollDice()
+
+        nbDicesLbl = findViewById(R.id.lblnbDices)
         dicesTxtV = Array(4, init = {
             if (it == 0) {
-                findViewById<TextView>(R.id.diceText1)
+                findViewById<TextView>(R.id.diceTv1)
             } else if (it == 1) {
-                findViewById<TextView>(R.id.diceText2)
+                findViewById<TextView>(R.id.diceTv2)
             } else if (it == 2) {
-                findViewById<TextView>(R.id.diceText3)
+                findViewById<TextView>(R.id.diceTv3)
             } else if (it == 3) {
-                findViewById<TextView>(R.id.diceText4)
+                findViewById<TextView>(R.id.diceTv4)
             } else {
-                findViewById<TextView>(R.id.diceText1)
+                findViewById<TextView>(R.id.diceTv1)
             }
         })
 
@@ -63,34 +63,37 @@ class MainActivity : AppCompatActivity() {
                 findViewById<ImageView>(R.id.Img1)
             }
         })
-    }*/
+    }
 
-    /* fun btnSwitchDiceStyleClicked(sender: View) {
+    /*fun btnSwitchDiceStyleClicked(sender: View) {
         isDiceStyleImg = !isDiceStyleImg
-        findViewById<View>(R.id.dicStyleText).isVisible = isDiceStyleImg
+        findViewById<View>(R.id.diceStyleText).isVisible = !isDiceStyleImg
         findViewById<View>(R.id.diceStyleImg).isVisible = isDiceStyleImg
-    }*/
+    }
 
-    /* val rollButton: Button = findViewById(R.id.button)
+     val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener {
             rollDice()
         }*/
-    /*private fun btnRollOneClicked(sender: View) {
+    private fun btnRollOneClicked(sender: View) {
         if (Dice + 1 < nbDices) {
             Dice++
         } else {
             Dice = 0
             resetDice()
         }
-        rollDice()
+        rollDice(Dice)
+        if (Dice == nbDices - 1)
+            saveResult()
     }
 
     private fun btnRollAllClicked(sender: View) {
-        for (i in 0 until nbDices) {
-            rollDice()
+        for (i in 0 until nbDices - 1) {
+            rollDice(i)
         }
+        saveResult()
         Dice = 3
-    }*/
+    }
 
     private fun btnDiceIncClicked(sender: View) {
         if (nbDices == 4) return
@@ -110,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         configureButtons()
     }
 
-    private fun rollDice() {
+    /*private fun rollDice() {
         // Create new Dice object with 6 sides and roll it
         val dice = Dice(6)
         val diceRoll = dice.roll()
@@ -168,7 +171,15 @@ class MainActivity : AppCompatActivity() {
         diceImage3.contentDescription = diceRoll.toString()
         diceImage4.setImageResource(drawableResource4)
         diceImage4.contentDescription = diceRoll.toString()
+    }*/
+    private fun rollDice(i: Int) {
+        var y = (1..6).random()
+        dicesViewVals[i] = y
+        dicesTxtV[i].text = y.toString()
+        diceImgV[i].setImageDrawable(getDrawable(y.toString()))
+
     }
+
     private fun configureButtons() {
         findViewById<Button>(R.id.btn_inc).isEnabled = nbDices != 4
         findViewById<Button>(R.id.btn_dec).isEnabled = nbDices != 1
@@ -177,28 +188,32 @@ class MainActivity : AppCompatActivity() {
     private fun getDiceDrawable(imgName: String): Drawable {
         return resources.getDrawable(
             resources.getIdentifier(
-                "@drawable/dice$imgName",
+                "@drawable/dice" + imgName,
                 null,
                 packageName
-            )
+            ), theme
         )
-
     }
 
+
     private fun resetDice() {
-        for (i in 0 until nbDices) {
+        for (i in 0 until nbDices - 1) {
             resetDice()
         }
 
     }
 
     private fun resetDice(i: Int) {
+        dicesViewVals = arrayOf(0)
         dicesTxtV[i].text = "-"
-        diceImgV[i]
+        diceImgV[i].setImageDrawable(getDiceDrawable("dice"))
+    }
+
+    private fun saveResult() {
+        val r = Result(dicesViewVals)
+        results.items.add(r)
     }
 }
-
-
     class Dice(private val numSides: Int) {
 
         fun roll(): Int {
@@ -213,14 +228,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        /*private fun rollDice(i: Int) {
+   /*   private fun rollDice(i: Int) {
         // Create new Dice object with 6 sides and roll it
-        var d = (1..6).random()
+       var d = (1..6).random()
         dicesTxtV[i].text = d.toString()
         diceImgV[i].setImageDrawable(getDiceDrawable(d.toString()))
-    }*/
+    }
 
-        /*val diceRoll = dice.roll()
+       val diceRoll = dice.roll()
         val diceImage: ImageView = findViewById(R.id.imageView)
         val drawableResource = when (diceRoll) {
             1 -> R.drawable.dice_1
