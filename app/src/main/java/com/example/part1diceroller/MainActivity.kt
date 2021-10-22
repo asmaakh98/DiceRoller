@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         //val rollButton: Button = findViewById(R.id.button)
         //rollButton.setOnClickListener { rollDice() }
         recyclerView = findViewById<RecyclerView>(R.id.ResultsView)
-        recyclerView.adapter = ResultAdapter(this)
+        recyclerView.adapter = ResultAdapter(this, results)
         //roll the dice onLoad
         //rollDice()
 
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             Dice++
         } else {
             Dice = 0
-            resetDice()
+            resetDices()
         }
         rollDice(Dice)
         if (Dice == nbDices - 1)
@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
         var y = (1..6).random()
         dicesViewVals[i] = y
         dicesTxtV[i].text = y.toString()
-        diceImgV[i].setImageDrawable(getDrawable(y.toString()))
+        diceImgV[i].setImageDrawable(getDiceDrawable(y.toString()))
 
     }
 
@@ -188,7 +188,7 @@ class MainActivity : AppCompatActivity() {
     private fun getDiceDrawable(imgName: String): Drawable {
         return resources.getDrawable(
             resources.getIdentifier(
-                "@drawable/dice" + imgName,
+                "@drawable/dice_"+imgName,
                 null,
                 packageName
             ), theme
@@ -196,9 +196,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun resetDice() {
+    private fun resetDices() {
         for (i in 0 until nbDices - 1) {
-            resetDice()
+            resetDice(i)
         }
 
     }
@@ -211,7 +211,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveResult() {
         val r = Result(dicesViewVals)
-        results.items.add(r)
+        results.add(Result(dicesViewVals))
     }
 }
     class Dice(private val numSides: Int) {

@@ -35,10 +35,10 @@ class ResultAdapter(
     override fun getItemCount() =
         dataset.size
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder
-        {
-            val adapterLayout : View =  LayoutInflater.from(parent.context).inflate(R.layout.results,parent, false)
-        return ItemViewHolder(adapterLayout)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+            val adapterLayout =
+                LayoutInflater.from(parent.context).inflate(R.layout.results, parent, false)
+            return ItemViewHolder(adapterLayout)
         }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
