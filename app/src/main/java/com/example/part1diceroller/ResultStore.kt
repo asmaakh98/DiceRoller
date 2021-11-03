@@ -15,10 +15,26 @@ data class Result(
     val dice4 : Int) {
     constructor(dicesVals: Array<Int> ) : this(dicesVals[0], dicesVals[1], dicesVals[2], dicesVals[3]){}
 
+    fun toMap() : Map<String, String> {
+
+        return mapOf("dice1" to this.dice1.toString(),"dice2" to this.dice2.toString(),"dice3" to this.dice3.toString(),"dice4" to this.dice4.toString())
+    }
 }
 
-object results {
+object results: RemoteDataHandler {
     var items:MutableList<Result> = mutableListOf()
+
+    fun loadItems() {
+        val response = RemoteServices.get("https://6172ab9561ed900017c409d5.mockapi.io/:endpoint")
+    }
+    fun addIteem(result: Result) {
+        RemoteServices.post("https://6172ab9561ed900017c409d5.mockapi.io/:endpoint", result.toMap(), this)
+        this.items.add(result)
+    }
+    override onFinishLoadingData(response: String)
+    {
+        val i = 0
+    }
 }
 class ResultAdapter(
     private val context: Context,

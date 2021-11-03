@@ -1,17 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">part1DiceRoller</string>
-    <string name="roll">ROLL</string>
-    <string name="textView2">1</string>
-    <string name="nbr_of_dices">Nbr of Dices</string>
-    <string name="btn_inc">-</string>
-    <string name="roll_all_dices">Roll all Dices</string>
-    <string name="btn_dec">+</string>
-    <string name="textView1">1</string>
-    <string name="roll_one_dice">Roll One Dice</string>
-    <string name="diceText1">-</string>
-    <string name="diceText2">-</string>
-    <string name="diceText3">-</string>
-    <string name="diceText4">-</string>
-    <string name="textView">1</string>
+    <string name="app_name">DiceRoller</string>
+    <string name="btn_one">Roll One Dice</string>
+    <string name="btn_all">Roll all Dices</string>
+    <string name="dice_label">Nbr of Dices</string>
+    <string name="number_tv">4</string>
+    <string name="btn_inc">+</string>
+    <string name="btn_dec">-</string>
+    <string name="btn_results">View Results</string>
 
 </resources>

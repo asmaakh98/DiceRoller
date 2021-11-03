@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         //roll the dice onLoad
         //rollDice()
 
+        Resultes.loadItems()
+
         nbDicesLbl = findViewById(R.id.lblnbDices)
         dicesTxtV = Array(4, init = {
             if (it == 0) {
@@ -211,7 +213,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveResult() {
         val r = Result(dicesViewVals)
-        results.add(Result(dicesViewVals))
+        Results.addItem(r)
+        recyclerView.adapter?notifyDataSetChanged()
     }
 }
     class Dice(private val numSides: Int) {
