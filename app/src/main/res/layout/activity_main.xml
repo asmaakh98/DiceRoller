@@ -184,4 +184,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ConstraintLayout" />
 
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="296dp"
+        android:layout_height="162dp"
+        app:layout_constraintStart_toStartOf="@id/ResultsView"
+        app:layout_constraintTop_toBottomOf="@+id/ResultsView" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

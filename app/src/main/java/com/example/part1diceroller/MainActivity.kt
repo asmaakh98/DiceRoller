@@ -67,10 +67,11 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    /*fun btnSwitchDiceStyleClicked(sender: View) {
-        isDiceStyleImg = !isDiceStyleImg
-        findViewById<View>(R.id.diceStyleText).isVisible = !isDiceStyleImg
-        findViewById<View>(R.id.diceStyleImg).isVisible = isDiceStyleImg
+    fun btnResults(sender: View) {
+        val intent =Intent(this, ResultsActivity:class.java).apply{
+            putExtra("resIndex", resIndex)
+        }
+        startActivity(intent)
     }
 
      val rollButton: Button = findViewById(R.id.button)
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             rollDice()
         }*/
     private fun btnRollOneClicked(sender: View) {
-        if (Dice + 1 < nbDices) {
+        /*if (Dice + 1 < nbDices) {
             Dice++
         } else {
             Dice = 0
@@ -87,8 +88,7 @@ class MainActivity : AppCompatActivity() {
         rollDice(Dice)
         if (Dice == nbDices - 1)
             saveResult()
-    }
-
+    }*/
     private fun btnRollAllClicked(sender: View) {
         for (i in 0 until nbDices - 1) {
             rollDice(i)
