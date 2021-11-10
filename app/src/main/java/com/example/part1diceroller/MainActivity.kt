@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             rollDice()
         }*/
     private fun btnRollOneClicked(sender: View) {
-        /*if (Dice + 1 < nbDices) {
+        if (Dice + 1 < nbDices) {
             Dice++
         } else {
             Dice = 0
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         rollDice(Dice)
         if (Dice == nbDices - 1)
             saveResult()
-    }*/
+    }
     private fun btnRollAllClicked(sender: View) {
         for (i in 0 until nbDices - 1) {
             rollDice(i)
