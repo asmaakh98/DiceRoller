@@ -3,10 +3,15 @@
     <string name="app_name">DiceRoller</string>
     <string name="btn_one">Roll One Dice</string>
     <string name="btn_all">Roll all Dices</string>
-    <string name="dice_label">Nbr of Dices</string>
+    <string name="lblnbDices">Nbr of Dices</string>
     <string name="number_tv">4</string>
     <string name="btn_inc">+</string>
     <string name="btn_dec">-</string>
+    <string name="api">api</string>
     <string name="btn_results">View Results</string>
+    <string name="channel_name">super cool channel name</string>
+    <string name="channel_description">information channel description</string>
+
+
 
 </resources>

@@ -9,6 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import android.view.Surface
+import android.view.SurfaceView
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +26,10 @@ class MainActivity : AppCompatActivity() {
     private var dicesViewVals: Array<Int> = Array(4, init = {
         0
     })
+
+    private lateinit var camSurfaceView: SurfaceView
     private var results: MutableList<Result> = mutableListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,21 +71,48 @@ class MainActivity : AppCompatActivity() {
                 findViewById<ImageView>(R.id.Img1)
             }
         })
+
+        /* camSurfaceView = findViewById<SurfaceView>(R.id.camSurfaceView)
+
+        if (!CameraServices.checkPermission(this)) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                1
+            )
+
+        }
+
+        if (CameraServices.checkPermission(this)) {
+            val cameraManager = this.getSystemService(Context.CAMERA_SERVICE) as CameraManager?
+            val cameraIdList = Array<String>
+            cameraIdList = cameraManager!!.cameraIdList
+
+            if (cameraIdList.size != 0) {
+                val cameraId = cameraIdList[0]
+                cameraManager.openCamera(camera0Id, deviceCallback, null)
+
+            }
+        }*/
+
+        CameraServices.loadSurface(this, findViewById<SurfaceView>(R.id.camSurfaceView))
     }
 
     fun btnResults(sender: View) {
-        val intent =Intent(this, ResultsActivity:class.java).apply{
+        val intent = Intent(this, ResultsActivity:
+
+        class.java).apply{
             putExtra("resIndex", resIndex)
         }
         startActivity(intent)
     }
 
-     val rollButton: Button = findViewById(R.id.button)
+    /* val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener {
             rollDice()
         }*/
     private fun btnRollOneClicked(sender: View) {
-        if (Dice + 1 < nbDices) {
+        /*if (Dice + 1 < nbDices) {
             Dice++
         } else {
             Dice = 0
@@ -87,8 +120,9 @@ class MainActivity : AppCompatActivity() {
         }
         rollDice(Dice)
         if (Dice == nbDices - 1)
-            saveResult()
+            saveResult()*/
     }
+
     private fun btnRollAllClicked(sender: View) {
         for (i in 0 until nbDices - 1) {
             rollDice(i)
@@ -190,7 +224,7 @@ class MainActivity : AppCompatActivity() {
     private fun getDiceDrawable(imgName: String): Drawable {
         return resources.getDrawable(
             resources.getIdentifier(
-                "@drawable/dice_"+imgName,
+                "@drawable/dice_" + imgName,
                 null,
                 packageName
             ), theme
@@ -216,7 +250,61 @@ class MainActivity : AppCompatActivity() {
         Results.addItem(r)
         recyclerView.adapter?notifyDataSetChanged()
     }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.channel_name)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
 }
+
+    /*var deviceCallback: CameraDevice.StateCallback = object : CameraDevice.State() {
+        override fun onOpened(camera: CameraDevice) {
+            val surface: Surface = camSurfaceView?.getHolder()!!.getSurface()
+
+            val surfaceList: List<Surface> = Collections.singletonList(surface)
+            try {
+                camera.createCaptureSession(surfaceList, sessionCallback, null)
+            } catch (e: CameraAccessException)
+
+            return
+
+        }
+
+    }
+
+    override fun onDisconnected(camera: CameraDevice) {
+
+    }
+
+    override fun onError(camera: CameraDevice, error: Int) {
+
+    }
+    var sessionCallback: CameraCaptureSession.StateCallback =
+        object : CameraCaptureSession.StateCallback() {
+            override fun onConfigured(session: CameraCaptureSession) {
+
+            }
+            override fun onConfiguredFailed(session: CameraCaptureSession) {
+
+            }
+
+        }*/
+
+
+
+
     class Dice(private val numSides: Int) {
 
         fun roll(): Int {
